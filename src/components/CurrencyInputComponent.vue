@@ -1,5 +1,4 @@
 <template>
-    {{inputLocal}}
     <div class="input-wrap">
         <div class="input-line"> 
             <input v-if="disabled == false" 
@@ -78,7 +77,6 @@ export default {
             filter: '',
             open: false,
             inputLocal: null,
-            lastCharCode: -1
         }
     },
     methods: {
