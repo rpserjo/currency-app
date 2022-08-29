@@ -46,7 +46,7 @@
                     <div 
                         v-if="disabled == false" 
                         class="option-bookmark" 
-                        @click.stop="setBaseCurrency(key)"
+                        @click.stop="setBaseCurrency($event, key)"
                     >
                         <my-icon :icon="(key == baseCurrency) ? 'bookmark' : 'bookmark-outline'" w="24" h="24"></my-icon>
                     </div>
@@ -80,7 +80,7 @@ export default {
         }
     },
     methods: {
-        setBaseCurrency(code){
+        setBaseCurrency(event, code){
             event.preventDefault();
             window.localStorage.setItem('baseCurrencyLocal', code);
             this.$emit('update:baseCurrency', code);
