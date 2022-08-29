@@ -1,11 +1,11 @@
 <template>
+    {{inputLocal}}
     <div class="input-wrap">
         <div class="input-line"> 
             <input v-if="disabled == false" 
                 class="text-input" 
-                type="text" 
-                v-model="inputLocal" 
-                @keypress="isNumber($event)"
+                type="number" 
+                v-model.number="inputLocal"
             />
             <input v-else 
                 class="text-input" 
@@ -77,20 +77,11 @@ export default {
         return {
             filter: '',
             open: false,
-            inputLocal: null
+            inputLocal: null,
+            lastCharCode: -1
         }
     },
     methods: {
-        isNumber(event){
-            event = (event) ? event : window.event;
-            const charCode = (event.which) ? event.which : event.keyCode;
-            if((charCode > 31 && (charCode < 48 || charCode > 57)) && (charCode !== 46 || charCode !== 8 || charCode !== 46)){
-                event.preventDefault();
-            }else{
-                setTimeout(() => this.$emit('update:input', event.target.value), 0);
-                return true;
-            }
-        },
         setBaseCurrency(code){
             event.preventDefault();
             window.localStorage.setItem('baseCurrencyLocal', code);
